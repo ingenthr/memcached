@@ -6109,13 +6109,6 @@ static int server_socket(const char *interface,
                                                 "setsockopt(SO_LINGER): %s",
                                                 strerror(errno));
             }
-
-            error = setsockopt(sfd, IPPROTO_TCP, TCP_NODELAY, (void *)&flags, sizeof(flags));
-            if (error != 0) {
-                settings.extensions.logger->log(EXTENSION_LOG_WARNING, NULL,
-                                                "setsockopt(TCP_NODELAY): %s",
-                                                strerror(errno));
-            }
         }
 
         if (bind(sfd, next->ai_addr, next->ai_addrlen) == SOCKET_ERROR) {
